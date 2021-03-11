@@ -78,9 +78,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\..\..\..\..\Programming\YouTube\YoutubeOpenGL 6 - Textures\pop_cat.png">
-      <Filter>Resource Files\Textures</Filter>
-    </Image>
     <Image Include="brick.png">
       <Filter>Resource Files\Textures</Filter>
     </Image>
