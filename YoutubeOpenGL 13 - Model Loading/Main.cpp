@@ -1,5 +1,9 @@
-#include"Model.h"
+//------- Ignore this ----------
+#include<filesystem>
+namespace fs = std::filesystem;
+//------------------------------
 
+#include"Model.h"
 
 
 const unsigned int width = 800;
@@ -64,10 +68,21 @@ int main()
 	// Creates camera object
 	Camera camera(width, height, glm::vec3(0.0f, 0.0f, 2.0f));
 
+
+	/*
+	* I'm doing this relative path thing in order to centralize all the resources into one folder and not
+	* duplicate them between tutorial folders. You can just copy paste the resources from the 'Resources'
+	* folder and then give a relative path from this folder to whatever resource you want to get to.
+	* Also note that this requires C++17, so go to Project Properties, C/C++, Language, and select C++17
+	*/
+	std::string parentDir = (fs::current_path().fs::path::parent_path()).string();
+	std::string modelPath = "/Resources/YoutubeOpenGL 13 - Model Loading/models/bunny/scene.gltf";
+	
 	// Load in a model
-	Model model("models/bunny/scene.gltf");
+	Model model((parentDir + modelPath).c_str());
 
-
+	// Original code from the tutorial
+	// Model model("models/bunny/scene.gltf");
 
 	// Main while loop
 	while (!glfwWindowShouldClose(window))

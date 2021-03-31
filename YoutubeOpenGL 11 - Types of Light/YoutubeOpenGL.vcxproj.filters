@@ -83,12 +83,4 @@
       <Filter>Resource Files\Shaders</Filter>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Image Include="planks.png">
-      <Filter>Resource Files\Textures</Filter>
-    </Image>
-    <Image Include="planksSpec.png">
-      <Filter>Resource Files\Textures</Filter>
-    </Image>
-  </ItemGroup>
 </Project>

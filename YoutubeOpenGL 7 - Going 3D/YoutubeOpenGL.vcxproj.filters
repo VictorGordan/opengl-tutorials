@@ -71,9 +71,4 @@
       <Filter>Resource Files\Shaders</Filter>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Image Include="brick.png">
-      <Filter>Resource Files\Textures</Filter>
-    </Image>
-  </ItemGroup>
 </Project>
