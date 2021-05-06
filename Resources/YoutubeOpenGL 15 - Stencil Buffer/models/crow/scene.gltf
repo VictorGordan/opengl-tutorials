@@ -1,0 +1,193 @@
+{
+    "asset" : {
+        "generator" : "Khronos glTF Blender I/O v1.5.17",
+        "version" : "2.0"
+    },
+    "scene" : 0,
+    "scenes" : [
+        {
+            "name" : "Scene",
+            "nodes" : [
+                5
+            ]
+        }
+    ],
+    "nodes" : [
+        {
+            "mesh" : 0,
+            "name" : "pasted__L_Eye_pasted__polySurface122_pasted__lambert2_0"
+        },
+        {
+            "children" : [
+                0
+            ],
+            "name" : "pasted__L_Eye_pasted__polySurface122"
+        },
+        {
+            "children" : [
+                1
+            ],
+            "name" : "RootNode"
+        },
+        {
+            "children" : [
+                2
+            ],
+            "name" : "f804b555d0254d7eb94845cac1756fbf.fbx"
+        },
+        {
+            "children" : [
+                3
+            ],
+            "name" : "RootNode (model correction matrix)"
+        },
+        {
+            "children" : [
+                4
+            ],
+            "name" : "RootNode (gltf orientation matrix)"
+        }
+    ],
+    "materials" : [
+        {
+            "doubleSided" : true,
+            "emissiveFactor" : [
+                1,
+                1,
+                1
+            ],
+            "emissiveTexture" : {
+                "index" : 0
+            },
+            "name" : "pasted__lambert2",
+            "pbrMetallicRoughness" : {
+                "baseColorFactor" : [
+                    0.30659300088882446,
+                    0.30659300088882446,
+                    0.30659300088882446,
+                    1
+                ],
+                "baseColorTexture" : {
+                    "index" : 1
+                },
+                "metallicFactor" : 0
+            }
+        }
+    ],
+    "meshes" : [
+        {
+            "name" : "pasted__L_Eye_pasted__polySurface122_pasted__lambert2_0",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "POSITION" : 0,
+                        "NORMAL" : 1,
+                        "TEXCOORD_0" : 2,
+                        "COLOR_0" : 3
+                    },
+                    "indices" : 4,
+                    "material" : 0
+                }
+            ]
+        }
+    ],
+    "textures" : [
+        {
+            "sampler" : 0,
+            "source" : 0
+        },
+        {
+            "sampler" : 0,
+            "source" : 0
+        }
+    ],
+    "images" : [
+        {
+            "mimeType" : "image/png",
+            "name" : "diffuse",
+            "uri" : "diffuse.png"
+        }
+    ],
+    "accessors" : [
+        {
+            "bufferView" : 0,
+            "componentType" : 5126,
+            "count" : 8911,
+            "max" : [
+                3.812753915786743,
+                24.640920639038086,
+                6.675088882446289
+            ],
+            "min" : [
+                -5.812751293182373,
+                0.8839949369430542,
+                -4.220421314239502
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 1,
+            "componentType" : 5126,
+            "count" : 8911,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 2,
+            "componentType" : 5126,
+            "count" : 8911,
+            "type" : "VEC2"
+        },
+        {
+            "bufferView" : 3,
+            "componentType" : 5123,
+            "count" : 8911,
+            "normalized" : true,
+            "type" : "VEC4"
+        },
+        {
+            "bufferView" : 4,
+            "componentType" : 5123,
+            "count" : 34128,
+            "type" : "SCALAR"
+        }
+    ],
+    "bufferViews" : [
+        {
+            "buffer" : 0,
+            "byteLength" : 106932,
+            "byteOffset" : 0
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 106932,
+            "byteOffset" : 106932
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 71288,
+            "byteOffset" : 213864
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 71288,
+            "byteOffset" : 285152
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 68256,
+            "byteOffset" : 356440
+        }
+    ],
+    "samplers" : [
+        {
+            "magFilter" : 9729,
+            "minFilter" : 9987
+        }
+    ],
+    "buffers" : [
+        {
+            "byteLength" : 424696,
+            "uri" : "scene.bin"
+        }
+    ]
+}
