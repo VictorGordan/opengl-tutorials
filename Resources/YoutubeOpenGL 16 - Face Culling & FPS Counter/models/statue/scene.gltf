@@ -1,0 +1,163 @@
+{
+    "asset" : {
+        "generator" : "Khronos glTF Blender I/O v1.5.17",
+        "version" : "2.0"
+    },
+    "scene" : 0,
+    "scenes" : [
+        {
+            "name" : "Scene",
+            "nodes" : [
+                3
+            ]
+        }
+    ],
+    "nodes" : [
+        {
+            "mesh" : 0,
+            "name" : "Mesh_0"
+        },
+        {
+            "children" : [
+                0
+            ],
+            "name" : "170516_mia337_032122_600_200Kfaces_8192px_OBJ.obj.cleaner.mater"
+        },
+        {
+            "children" : [
+                1
+            ],
+            "name" : "RootNode (model correction matrix)"
+        },
+        {
+            "children" : [
+                2
+            ],
+            "name" : "RootNode (gltf orientation matrix)"
+        }
+    ],
+    "materials" : [
+        {
+            "doubleSided" : true,
+            "name" : "170516_mia337_032122_600_200Kfaces_8192px_OBJ",
+            "normalTexture" : {
+                "index" : 0
+            },
+            "pbrMetallicRoughness" : {
+                "baseColorTexture" : {
+                    "index" : 1
+                },
+                "metallicFactor" : 0,
+                "roughnessFactor" : 0.6000000238418579
+            }
+        }
+    ],
+    "meshes" : [
+        {
+            "name" : "Mesh_0",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "POSITION" : 0,
+                        "NORMAL" : 1,
+                        "TEXCOORD_0" : 2
+                    },
+                    "indices" : 3,
+                    "material" : 0
+                }
+            ]
+        }
+    ],
+    "textures" : [
+        {
+            "sampler" : 0,
+            "source" : 0
+        },
+        {
+            "sampler" : 0,
+            "source" : 1
+        }
+    ],
+    "images" : [
+        {
+            "mimeType" : "image/png",
+            "name" : "170516_mia337_032122_600_200Kfaces_8192px_OBJ_normal",
+            "uri" : "170516_mia337_032122_600_200Kfaces_8192px_OBJ_normal.png"
+        },
+        {
+            "mimeType" : "image/jpeg",
+            "name" : "170516_mia337_032122_600_200Kfaces_8192px_OBJ_baseColor",
+            "uri" : "170516_mia337_032122_600_200Kfaces_8192px_OBJ_baseColor.jpg"
+        }
+    ],
+    "accessors" : [
+        {
+            "bufferView" : 0,
+            "componentType" : 5126,
+            "count" : 136705,
+            "max" : [
+                0.21414099633693695,
+                0.39044785499572754,
+                -0.340849906206131
+            ],
+            "min" : [
+                -0.6136569976806641,
+                -0.6338899731636047,
+                -0.8255438208580017
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 1,
+            "componentType" : 5126,
+            "count" : 136705,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 2,
+            "componentType" : 5126,
+            "count" : 136705,
+            "type" : "VEC2"
+        },
+        {
+            "bufferView" : 3,
+            "componentType" : 5125,
+            "count" : 605388,
+            "type" : "SCALAR"
+        }
+    ],
+    "bufferViews" : [
+        {
+            "buffer" : 0,
+            "byteLength" : 1640460,
+            "byteOffset" : 0
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 1640460,
+            "byteOffset" : 1640460
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 1093640,
+            "byteOffset" : 3280920
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 2421552,
+            "byteOffset" : 4374560
+        }
+    ],
+    "samplers" : [
+        {
+            "magFilter" : 9729,
+            "minFilter" : 9987
+        }
+    ],
+    "buffers" : [
+        {
+            "byteLength" : 6796112,
+            "uri" : "scene.bin"
+        }
+    ]
+}
