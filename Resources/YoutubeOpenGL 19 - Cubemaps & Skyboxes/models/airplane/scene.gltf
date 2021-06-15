@@ -1,0 +1,194 @@
+{
+    "asset" : {
+        "generator" : "Khronos glTF Blender I/O v1.5.17",
+        "version" : "2.0"
+    },
+    "scene" : 0,
+    "scenes" : [
+        {
+            "name" : "Scene",
+            "nodes" : [
+                6
+            ]
+        }
+    ],
+    "nodes" : [
+        {
+            "mesh" : 0,
+            "name" : "Cylinder064_13 - Default_0"
+        },
+        {
+            "children" : [
+                0
+            ],
+            "name" : "Node_5"
+        },
+        {
+            "children" : [
+                1
+            ],
+            "name" : "Cylinder064"
+        },
+        {
+            "children" : [
+                2
+            ],
+            "name" : "RootNode"
+        },
+        {
+            "children" : [
+                3
+            ],
+            "name" : "7f572c9e58d44d6aadd1f922db233d57.fbx"
+        },
+        {
+            "children" : [
+                4
+            ],
+            "name" : "RootNode (model correction matrix)"
+        },
+        {
+            "children" : [
+                5
+            ],
+            "name" : "RootNode (gltf orientation matrix)"
+        }
+    ],
+    "materials" : [
+        {
+            "doubleSided" : true,
+            "name" : "13_-_Default.001",
+            "normalTexture" : {
+                "index" : 0
+            },
+            "occlusionTexture" : {
+                "index" : 1
+            },
+            "pbrMetallicRoughness" : {
+                "baseColorTexture" : {
+                    "index" : 2
+                },
+                "metallicRoughnessTexture" : {
+                    "index" : 1
+                }
+            }
+        }
+    ],
+    "meshes" : [
+        {
+            "name" : "Cylinder064_13 - Default_0.001",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "POSITION" : 0,
+                        "NORMAL" : 1,
+                        "TEXCOORD_0" : 2
+                    },
+                    "indices" : 3,
+                    "material" : 0
+                }
+            ]
+        }
+    ],
+    "textures" : [
+        {
+            "sampler" : 0,
+            "source" : 0
+        },
+        {
+            "sampler" : 0,
+            "source" : 1
+        },
+        {
+            "sampler" : 0,
+            "source" : 2
+        }
+    ],
+    "images" : [
+        {
+            "mimeType" : "image/png",
+            "name" : "13_-_Default_normal",
+            "uri" : "13_-_Default_normal.png"
+        },
+        {
+            "mimeType" : "image/png",
+            "name" : "13_-_Default_metallicRoughness",
+            "uri" : "specular.png"
+        },
+        {
+            "mimeType" : "image/png",
+            "name" : "13_-_Default_baseColor",
+            "uri" : "diffuse.png"
+        }
+    ],
+    "accessors" : [
+        {
+            "bufferView" : 0,
+            "componentType" : 5126,
+            "count" : 9734,
+            "max" : [
+                1.974577784538269,
+                1.0719269514083862,
+                0.6553806066513062
+            ],
+            "min" : [
+                -1.9745780229568481,
+                -0.29439276456832886,
+                -2.456622362136841
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 1,
+            "componentType" : 5126,
+            "count" : 9734,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 2,
+            "componentType" : 5126,
+            "count" : 9734,
+            "type" : "VEC2"
+        },
+        {
+            "bufferView" : 3,
+            "componentType" : 5123,
+            "count" : 21948,
+            "type" : "SCALAR"
+        }
+    ],
+    "bufferViews" : [
+        {
+            "buffer" : 0,
+            "byteLength" : 116808,
+            "byteOffset" : 0
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 116808,
+            "byteOffset" : 116808
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 77872,
+            "byteOffset" : 233616
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 43896,
+            "byteOffset" : 311488
+        }
+    ],
+    "samplers" : [
+        {
+            "magFilter" : 9729,
+            "minFilter" : 9987
+        }
+    ],
+    "buffers" : [
+        {
+            "byteLength" : 355384,
+            "uri" : "scene.bin"
+        }
+    ]
+}
