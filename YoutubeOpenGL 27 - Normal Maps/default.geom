@@ -39,7 +39,7 @@ void main()
     vec3 bitangent = vec3(invDet * (-deltaUV1.x * edge0 + deltaUV0.x * edge1));
 
     vec3 T = normalize(vec3(data_in[0].model * vec4(tangent, 0.0f)));
-    vec3 B = -normalize(vec3(data_in[0].model * vec4(bitangent, 0.0f)));
+    vec3 B = normalize(vec3(data_in[0].model * vec4(bitangent, 0.0f)));
     vec3 N = normalize(vec3(data_in[0].model * vec4(cross(edge1, edge0), 0.0f)));
 
     mat3 TBN = mat3(T, B, N);
