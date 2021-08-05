@@ -41,6 +41,7 @@ vec4 pointLight()
 	// ambient lighting
 	float ambient = 0.05f;
 
+
 	vec3 viewDirection = normalize(camPos - crntPos);
 	
 	// Variables that control parallax occlusion mapping quality
@@ -52,8 +53,8 @@ vec4 pointLight()
 	float currentLayerDepth = 0.0f;
 	
 	// Remove the z division if you want less aberated results
-	vec2 P = viewDirection.xy / viewDirection.z * heightScale; 
-    vec2 deltaUVs = P / numLayers;
+	vec2 S = viewDirection.xy / viewDirection.z * heightScale; 
+    vec2 deltaUVs = S / numLayers;
 	
 	vec2 UVs = texCoord;
 	float currentDepthMapValue = 1.0f - texture(displacement0, UVs).r;
@@ -77,6 +78,7 @@ vec4 pointLight()
 	if(UVs.x > 1.0 || UVs.y > 1.0 || UVs.x < 0.0 || UVs.y < 0.0)
 		discard;
 
+	
 
 
 	// diffuse lighting
