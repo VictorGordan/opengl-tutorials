@@ -40,19 +40,25 @@ void main()
 })";
 const char* screenComputeShaderSource = R"(#version 460 core
 layout(local_size_x = 8, local_size_y = 4, local_size_z = 1) in;
-layout(rgba32f, binding = 0) writeonly uniform image2D screen;
+
+// Using the restrict qualifier we promise OpenGL that this is the only variable through
+// which we modify the memory represented by it which "...allows the compiler to optimize reads/writes better."
+layout(rgba32f, binding = 0) restrict writeonly uniform image2D screen;
+
 void main()
 {
 	vec4 pixel = vec4(0.075, 0.133, 0.173, 1.0);
 	ivec2 pixel_coords = ivec2(gl_GlobalInvocationID.xy);
 	
 	ivec2 dims = imageSize(screen);
-	float x = -(float(pixel_coords.x * 2 - dims.x) / dims.x); // transforms to [-1.0, 1.0]
-	float y = -(float(pixel_coords.y * 2 - dims.y) / dims.y); // transforms to [-1.0, 1.0]
+	
+	// The OpenGL pixel center is defined to be offseted from the lower left corner by (0.5, 0.5)
+	// this is why we add 0.5
+	vec2 ndc = (pixel_coords + 0.5) / dims * 2.0 - 1.0; // transforms to [-1.0, 1.0]
 
 	float fov = 90.0;
 	vec3 cam_o = vec3(0.0, 0.0, -tan(fov / 2.0));
-	vec3 ray_o = vec3(x, y, 0.0);
+	vec3 ray_o = vec3(ndc, 0.0);
 	vec3 ray_d = normalize(ray_o - cam_o);
 
 	vec3 sphere_c = vec3(0.0, 0.0, -5.0);
@@ -159,7 +165,9 @@ int main()
 		glUseProgram(computeProgram);
 		glBindImageTexture(0, screenTex, 0, GL_FALSE, 0, GL_WRITE_ONLY, GL_RGBA32F);
 		glDispatchCompute(ceil(SCREEN_WIDTH / 8), ceil(SCREEN_HEIGHT / 4), 1);
-		glMemoryBarrier(GL_ALL_BARRIER_BITS);
+		// The ressource the compute shader wrote to (an image) will later be used to make texture fetches from.
+		// Therefore use GL_TEXTURE_FETCH_BARRIER_BIT as the appropriate barrier to insure said writes will be visible.
+		glMemoryBarrier(GL_TEXTURE_FETCH_BARRIER_BIT);
 
 		glUseProgram(screenShaderProgram);
 		glBindTextureUnit(0, screenTex);
