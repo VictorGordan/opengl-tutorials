@@ -82,7 +82,7 @@ int main()
 	// Introduce the window into the current context
 	glfwMakeContextCurrent(window);
 
-	//Load GLAD so it configures OpenGL
+	// Load GLAD so it configures OpenGL
 	gladLoadGL();
 	// Specify the viewport of OpenGL in the Window
 	// In this case the viewport goes from x = 0, y = 0, to x = 800, y = 800
@@ -130,7 +130,7 @@ int main()
 	// Store mesh data in vectors for the mesh
 	std::vector <Vertex> lightVerts(lightVertices, lightVertices + sizeof(lightVertices) / sizeof(Vertex));
 	std::vector <GLuint> lightInd(lightIndices, lightIndices + sizeof(lightIndices) / sizeof(GLuint));
-	// Crate light mesh
+	// Create light mesh
 	Mesh light(lightVerts, lightInd, tex);
 
 
