@@ -95,8 +95,8 @@ int main()
 	GLuint indices[] =
 	{
 		0, 3, 5, // Lower left triangle
-		3, 2, 4, // Lower right triangle
-		5, 4, 1 // Upper triangle
+		3, 2, 4, // Upper triangle
+		5, 4, 1 // Lower right triangle
 	};
 
 	// Create reference containers for the Vartex Array Object, the Vertex Buffer Object, and the Element Buffer Object
