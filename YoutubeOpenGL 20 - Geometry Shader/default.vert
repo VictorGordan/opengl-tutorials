@@ -28,12 +28,16 @@ uniform mat4 translation;
 uniform mat4 rotation;
 uniform mat4 scale;
 
-
+// translation on the y-axis by -1.0
+// then mirror on the x-axis
+const mat3 coordinateCorrectionMatrix = mat3(vec3(1.0, 0.0, 0.0),
+                                             vec3(0.0,-1.0, 0.0),
+                                             vec3(0.0, 1.0, 1.0));
 void main()
 {
 	gl_Position = model * translation * rotation * scale * vec4(aPos, 1.0f);
 	data_out.Normal = aNormal;
 	data_out.color = aColor;
-	data_out.texCoord = mat2(0.0, -1.0, 1.0, 0.0) * aTex;
+	data_out.texCoord = vec2(coordinateCorrectionMatrix * vec3(aTex, 1.0));
 	data_out.projection = camMatrix;
 }

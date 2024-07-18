@@ -30,6 +30,12 @@ uniform mat4 model;
 uniform mat4 translation;
 uniform mat4 rotation;
 uniform mat4 scale;
+
+// translation on the y-axis by -1.0
+// then mirror on the x-axis
+const mat3 coordinateCorrectionMatrix = mat3(vec3(1.0, 0.0, 0.0),
+                                             vec3(0.0,-1.0, 0.0),
+                                             vec3(0.0, 1.0, 1.0));
 // Imports the light matrix
 uniform mat4 lightProjection;
 
@@ -43,7 +49,7 @@ void main()
 	// Assigns the colors from the Vertex Data to "color"
 	color = aColor;
 	// Assigns the texture coordinates from the Vertex Data to "texCoord"
-	texCoord = mat2(0.0, -1.0, 1.0, 0.0) * aTex;
+	texCoord = vec2(coordinateCorrectionMatrix * vec3(aTex, 1.0));
 	// Calculates the position of the light fragment for the fragment shader
 	fragPosLight = lightProjection * vec4(crntPos, 1.0f);
 	
