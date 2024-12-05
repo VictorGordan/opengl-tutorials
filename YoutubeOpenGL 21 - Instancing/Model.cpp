@@ -1,6 +1,6 @@
 #include"Model.h"
 
-Model::Model(const char* file, unsigned int instancing, std::vector<glm::mat4> instanceMatrix)
+Model::Model(const char* file)
 {
 	// Make a JSON object
 	std::string text = get_file_contents(file);
@@ -10,19 +10,16 @@ Model::Model(const char* file, unsigned int instancing, std::vector<glm::mat4> i
 	Model::file = file;
 	data = getData();
 
-	Model::instancing = instancing;
-	Model::instanceMatrix = instanceMatrix;
-
 	// Traverse all nodes
 	traverseNode(0);
 }
 
-void Model::Draw(Shader& shader, Camera& camera, glm::vec3 translation, glm::quat rotation, glm::vec3 scale)
+void Model::Draw(Shader& shader, Camera& camera)
 {
 	// Go over all meshes and draw each one
 	for (unsigned int i = 0; i < meshes.size(); i++)
 	{
-		meshes[i].Mesh::Draw(shader, camera, matricesMeshes[i], translation, rotation, scale);
+		meshes[i].Mesh::Draw(shader, camera, matricesMeshes[i]);
 	}
 }
 
@@ -48,7 +45,7 @@ void Model::loadMesh(unsigned int indMesh)
 	std::vector<Texture> textures = getTextures();
 
 	// Combine the vertices, indices, and textures into a mesh
-	meshes.push_back(Mesh(vertices, indices, textures, instancing, instanceMatrix));
+	meshes.push_back(Mesh(vertices, indices, textures));
 }
 
 void Model::traverseNode(unsigned int nextNode, glm::mat4 matrix)
@@ -170,9 +167,9 @@ std::vector<float> Model::getFloats(json accessor)
 	// Go over all the bytes in the data at the correct place using the properties from above
 	unsigned int beginningOfData = byteOffset + accByteOffset;
 	unsigned int lengthOfData = count * 4 * numPerVert;
-	for (unsigned int i = beginningOfData; i < beginningOfData + lengthOfData; i)
+	for (unsigned int i = beginningOfData; i < beginningOfData + lengthOfData; i += 4)
 	{
-		unsigned char bytes[] = { data[i++], data[i++], data[i++], data[i++] };
+		unsigned char bytes[] = { data[i], data[i + 1], data[i + 2], data[i + 3] };
 		float value;
 		std::memcpy(&value, bytes, sizeof(float));
 		floatVec.push_back(value);
@@ -199,9 +196,9 @@ std::vector<GLuint> Model::getIndices(json accessor)
 	unsigned int beginningOfData = byteOffset + accByteOffset;
 	if (componentType == 5125)
 	{
-		for (unsigned int i = beginningOfData; i < byteOffset + accByteOffset + count * 4; i)
+		for (unsigned int i = beginningOfData; i < byteOffset + accByteOffset + count * 4; i += 4)
 		{
-			unsigned char bytes[] = { data[i++], data[i++], data[i++], data[i++] };
+			unsigned char bytes[] = { data[i], data[i + 1], data[i + 2], data[i + 3] };
 			unsigned int value;
 			std::memcpy(&value, bytes, sizeof(unsigned int));
 			indices.push_back((GLuint)value);
@@ -209,9 +206,9 @@ std::vector<GLuint> Model::getIndices(json accessor)
 	}
 	else if (componentType == 5123)
 	{
-		for (unsigned int i = beginningOfData; i < byteOffset + accByteOffset + count * 2; i)
+		for (unsigned int i = beginningOfData; i < byteOffset + accByteOffset + count * 2; i += 2)
 		{
-			unsigned char bytes[] = { data[i++], data[i++] };
+			unsigned char bytes[] = { data[i], data[i + 1] };
 			unsigned short value;
 			std::memcpy(&value, bytes, sizeof(unsigned short));
 			indices.push_back((GLuint)value);
@@ -219,9 +216,9 @@ std::vector<GLuint> Model::getIndices(json accessor)
 	}
 	else if (componentType == 5122)
 	{
-		for (unsigned int i = beginningOfData; i < byteOffset + accByteOffset + count * 2; i)
+		for (unsigned int i = beginningOfData; i < byteOffset + accByteOffset + count * 2; i += 2)
 		{
-			unsigned char bytes[] = { data[i++], data[i++] };
+			unsigned char bytes[] = { data[i], data[i + 1] };
 			short value;
 			std::memcpy(&value, bytes, sizeof(short));
 			indices.push_back((GLuint)value);
@@ -260,7 +257,7 @@ std::vector<Texture> Model::getTextures()
 		if (!skip)
 		{
 			// Load diffuse texture
-			if (texPath.find("baseColor") != std::string::npos || texPath.find("diffuse") != std::string::npos)
+			if (texPath.find("baseColor") != std::string::npos)
 			{
 				Texture diffuse = Texture((fileDirectory + texPath).c_str(), "diffuse", loadedTex.size());
 				textures.push_back(diffuse);
@@ -268,7 +265,7 @@ std::vector<Texture> Model::getTextures()
 				loadedTexName.push_back(texPath);
 			}
 			// Load specular texture
-			else if (texPath.find("metallicRoughness") != std::string::npos || texPath.find("specular") != std::string::npos)
+			else if (texPath.find("metallicRoughness") != std::string::npos)
 			{
 				Texture specular = Texture((fileDirectory + texPath).c_str(), "specular", loadedTex.size());
 				textures.push_back(specular);
@@ -307,28 +304,49 @@ std::vector<Vertex> Model::assembleVertices
 
 std::vector<glm::vec2> Model::groupFloatsVec2(std::vector<float> floatVec)
 {
+	const unsigned int floatsPerVector = 2;
+	
 	std::vector<glm::vec2> vectors;
-	for (int i = 0; i < floatVec.size(); i)
+	for (unsigned int i = 0; i < floatVec.size(); i += floatsPerVector)
 	{
-		vectors.push_back(glm::vec2(floatVec[i++], floatVec[i++]));
+		vectors.push_back(glm::vec2(0, 0));
+
+		for (unsigned int j = 0; j < floatsPerVector; j++)
+		{
+			vectors.back()[j] = floatVec[i + j];
+		}
 	}
 	return vectors;
 }
 std::vector<glm::vec3> Model::groupFloatsVec3(std::vector<float> floatVec)
 {
+	const unsigned int floatsPerVector = 3;
+
 	std::vector<glm::vec3> vectors;
-	for (int i = 0; i < floatVec.size(); i)
+	for (unsigned int i = 0; i < floatVec.size(); i += floatsPerVector)
 	{
-		vectors.push_back(glm::vec3(floatVec[i++], floatVec[i++], floatVec[i++]));
+		vectors.push_back(glm::vec3(0, 0, 0));
+
+		for (unsigned int j = 0; j < floatsPerVector; j++)
+		{
+			vectors.back()[j] = floatVec[i + j];
+		}
 	}
 	return vectors;
 }
 std::vector<glm::vec4> Model::groupFloatsVec4(std::vector<float> floatVec)
 {
+	const unsigned int floatsPerVector = 4;
+
 	std::vector<glm::vec4> vectors;
-	for (int i = 0; i < floatVec.size(); i)
+	for (unsigned int i = 0; i < floatVec.size(); i += floatsPerVector)
 	{
-		vectors.push_back(glm::vec4(floatVec[i++], floatVec[i++], floatVec[i++], floatVec[i++]));
+		vectors.push_back(glm::vec4(0, 0, 0, 0));
+
+		for (unsigned int j = 0; j < floatsPerVector; j++)
+		{
+			vectors.back()[j] = floatVec[i + j];
+		}
 	}
 	return vectors;
 }
